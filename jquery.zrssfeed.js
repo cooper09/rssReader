@@ -25,10 +25,15 @@
  *
  **/
 
+
 (function($){
 
+var contentEntries;
+
+
 	$.fn.rssfeed = function(url, options, fn) {	
-	
+		alert("rssfeed options: " +  options.testData );
+
 		// Set plugin defaults
 		var defaults = {
 			limit: 10,
@@ -51,7 +56,7 @@
 			sortasc: true,
 			historical: false
 		};  
-		var options = $.extend(defaults, options); 
+		var options = $.extend(defaults, options.testData ); 
 		
 		// Functions
 		return this.each(function(i, e) {
@@ -78,9 +83,15 @@
 			if (options.key != null) api += "&key=" + options.key;
 			api += "&output=json_xml"
 
+			
 			// Send request
 			$.getJSON(api, function(data){
+				alert (" getJSON this.eacch data: " + data + "1: " + _contentEntries + " 2: "+ contentEntries);
 				
+
+				var _contentEntries = "TESTME";
+			    contentEntries = _contentEntries;
+	
 				// Check for error
 				if (data.responseStatus == 200) {
 	
@@ -103,10 +114,14 @@
 				};
 			});				
 		});
+		
+		return "ubbity ubbity!!!..";
+
 	};
 	
 	// Function to create HTML result
 	var _process = function(e, data, options) {
+				contentEntries = "fug you..";
 
 		// Get JSON feed data
 		var feeds = data.feed;
@@ -122,6 +137,8 @@
 		if (options.media) {
 			var xml = _getXMLDocument(data.xmlString);
 			var xmlEntries = xml.getElementsByTagName('item');
+
+
 		}
 		
 		// Add header if required
@@ -129,7 +146,8 @@
 			html +=	'<div class="rssHeader">' +
 				'<a href="'+feeds.link+'" title="'+ feeds.description +'">'+ feeds.title +'</a>' +
 				'</div>';
-			
+		
+		//alert('html: '+ html );	
 		// Add body
 		html += '<div class="rssBody">' +
 			'<ul>';
@@ -205,6 +223,7 @@
 			
 			// Add any media
 			if (options.media && xmlEntries.length > 0) {
+				//alert("xml entries: " + xmlEntries );
 				var xmlMedia = xmlEntries[i].getElementsByTagName('enclosure');
 				if (xmlMedia.length > 0) {
 					
@@ -265,6 +284,8 @@
 
 		// Apply target to links
 		$('a',e).attr('target',options.linktarget);
+		
+			contentEntries = "mixins...2";
 	};
 	
 	var _formatFilesize = function(bytes) {
@@ -344,6 +365,11 @@
 		// Check for plural units
 		if (t > 1) u += 's';
 		return t + ' ' + u;
+	}
+
+	$.fn._getEntries = function () {
+		alert("_getEntries:" + contentEntries );
+		//return data;
 	}
 
 })(jQuery);

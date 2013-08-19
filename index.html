@@ -3,9 +3,16 @@
 <script type-="text/javascript">
 
 $(document).ready(function () {
-    $('#test').rssfeed('http://sonyainc.net/wp/?feed=rss2', {
-      limit: 5
+	
+
+  var whatever = $('#test').rssfeed('http://sonyainc.net/wp/?feed=rss2', {
+      limit: 5,
+      testData: "Test"
     });
+
+   //console.log("index _getEntries:  " + $('#test')._getEntries() );
+
+alert("whatever: " + whatever );
   });
 </script>
 <body>
