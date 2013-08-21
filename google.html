@@ -16,11 +16,16 @@ var myEntries =  new Array();
             var entry = result.feed.entries[i];
             myEntries[i] = entry;
 
-            var div = document.createElement("div");
-            div.appendChild(document.createTextNode(entry.title));
+            var div = document.createElement("a");
+            var linkTxt = document.createTextNode(myEntries[i].title);
+            div.appendChild(linkTxt);
+            document.createTextNode("<br/>");
+            div.title = myEntries[i].title;
+            div.href =myEntries[i].link;
+            //div.appendChild(document.createTextNode(entry.title));
+            //div.appendChild(document.createTextNode( myEntries[i].title));
             container.appendChild(div);
           }
-         //alert("data: "+ myEntries[0].content )
         }
       });
     }
@@ -31,6 +36,6 @@ var myEntries =  new Array();
   <body>TEST
     <div id="feed"></div>
 
-    <a href=""><script>document.write(myEntries[0].data)</script></a>
+   <!--  <a href=""><script>document.write(myEntries[0])</script></a>  -->
   </body>
 </html>
