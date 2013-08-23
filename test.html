@@ -1,0 +1,30 @@
+<script type="text/javascript" src="/VACAREERS/assets/common/js/jquery-17.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type-="text/javascript">
+
+var myVar = "<p>These are the times to try men's souls...</p>" + '\n' + "...plus!" + '\n';
+document.write(myVar);
+
+google.load("feeds", "1");
+
+function initialize() {
+      var feed = new google.feeds.Feed("http://sonyainc.net/wp/?feed=rss2");
+
+      feed.load(function(result) {
+        if (!result.error) {
+        	parent.parent.parent.document.write("SUCCESS!!!");
+        	console.log("load succeeded")
+          } else {
+          	document.write("Ah boo!")
+          }
+        }); //end load   */
+     
+      }//end initialize  
+
+ google.setOnLoadCallback(initialize);
+
+</script>
+<body>
+	<div id="myId">TEST</div>
+</body>

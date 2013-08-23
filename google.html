@@ -1,8 +1,8 @@
 <html>
   <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-
+    <script type="text/javascript" src="/VACAREERS/assets/common/js/jquery-17.js"></script>
+<script type="text/javascript">
 var myEntries =  new Array();
 
     google.load("feeds", "1");
@@ -15,16 +15,21 @@ var myEntries =  new Array();
           for (var i = 0; i < result.feed.entries.length; i++) {
             var entry = result.feed.entries[i];
             myEntries[i] = entry;
-
             var div = document.createElement("a");
-            var linkTxt = document.createTextNode(myEntries[i].title);
+            var title = myEntries[i].title+'<br/>';
+            var linkTxt = document.createTextNode(title);
             div.appendChild(linkTxt);
-            document.createTextNode("<br/>");
             div.title = myEntries[i].title;
             div.href =myEntries[i].link;
             //div.appendChild(document.createTextNode(entry.title));
             //div.appendChild(document.createTextNode( myEntries[i].title));
+            //var break = "<br/>";
+    
+
             container.appendChild(div);
+            
+            $(container).insertAfter("<br/>");
+           
           }
         }
       });
@@ -33,8 +38,10 @@ var myEntries =  new Array();
 
     </script>
   </head>
-  <body>TEST
+  <body>
     <div id="feed"></div>
+    <br/>
+    <div></div>
 
    <!--  <a href=""><script>document.write(myEntries[0])</script></a>  -->
   </body>
